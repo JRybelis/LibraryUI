@@ -88,6 +88,9 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
+        if($author->authorBooks->count()) {
+            return 'Unable to delete, as this author has books assigned.';
+        }
         $author->delete();
         return redirect()->route('author.index');
     }
