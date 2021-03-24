@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Author;
 use Illuminate\Http\Request;
+
 
 class BookController extends Controller
 {
@@ -24,7 +26,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $authors = Author::all();
+        return view('book.create', ['authors' => $authors]);
     }
 
     /**
