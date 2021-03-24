@@ -1,5 +1,5 @@
 @foreach($authors as $author)
-    <a href="{{route('author.edit', [$author])}}">{{$author->name}} {{$author->surname}}</a>
+    {{$author->name}} {{$author->surname}} <a href="{{route('author.edit', [$author])}}">[EDIT]</a>
     <form method="POST" action="{{route('author.destroy', [$author])}}">
         @csrf
         <button type="submit">DELETE</button>
