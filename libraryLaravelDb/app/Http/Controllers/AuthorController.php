@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth'); //prohibits editing without being logged in.
+    }
     /**
      * Display a listing of the resource.
      *
@@ -88,7 +92,7 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        if($author->authorBooks->count()) {
+        if($author->authorBooksList->count() !== 0) {
             return 'Unable to delete, as this author has books assigned.';
         }
         $author->delete();
