@@ -13,8 +13,8 @@
                             <div> 
                                 {{$author->name}} {{$author->surname}} 
                             </div>
-                            <div class="list-line_buttons">
-                                <a href="{{route('author.edit', [$author])}}" class="btn btn-info">[EDIT]</a>
+                            <div class="list-line__buttons">
+                                <a href="{{route('author.edit', [$author])}}" class="btn btn-info">EDIT</a>
                                 <form method="POST" action="{{route('author.destroy', [$author])}}">
                                 @csrf
                                 <button type="submit" class="btn btn-danger">DELETE</button>

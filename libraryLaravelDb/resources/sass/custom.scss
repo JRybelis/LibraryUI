@@ -1,0 +1,11 @@
+.list-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__buttons {
+        display: flex;
+        &>* {
+            margin: 5px;
+        }
+    }
+}

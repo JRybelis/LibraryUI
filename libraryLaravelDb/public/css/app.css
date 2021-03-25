@@ -10002,3 +10002,14 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.list-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list-line__buttons {
+  display: flex;
+}
+.list-line__buttons > * {
+  margin: 5px;
+}

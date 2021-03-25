@@ -40,10 +40,7 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        $author = new Author;
-        $author->name = $request->author_name;
-        $author->surname = $request->author_surname;
-        $author->save();
+        Author::create($request); // static function that creates the object
         return redirect()-> route('author.index');
     }
 
@@ -78,6 +75,7 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
+        // Author::update($request, $author); // static function that updates the object
         $author->name = $request->author_name;
         $author->surname = $request->author_surname;
         $author->save();
@@ -92,6 +90,7 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
+        // Author::destroy($author);
         if($author->authorBooksList->count() !== 0) {
             return 'Unable to delete, as this author has books assigned.';
         }
