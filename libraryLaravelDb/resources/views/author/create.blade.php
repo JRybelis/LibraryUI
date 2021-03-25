@@ -8,10 +8,18 @@
                     <div class="card-header">Add new author</div>
                     <div class="card-body">
                     <form method="POST" action="{{route('author.store')}}">
-                    Name: <input type="text" name="author_name">
-                    Surname: <input type="text" name="author_surname">
+                        <div class="form-group">
+                            <label> Name: </label>
+                            <input type="text" class="form-control" name="author_name">
+                            <small class="form-text text-muted">The name of the new author.</small>
+                        </div>
+                        <div class="form-group">
+                            <label> Surname: </label>
+                            <input type="text" class="form-control" name="author_surname">
+                            <small class="form-text text-muted">The surname of the new author.</small>
+                        </div>
                         @csrf
-                        <button type="submit">ADD</button>
+                        <button type="submit" class="btn btn-primary">ADD</button>
                     </form>
                     </div>
                 </div>

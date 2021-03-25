@@ -8,10 +8,18 @@
                     <div class="card-header">Edit author details</div>
                     <div class="card-body">
                         <form method="POST" action="{{route('author.update', [$author->id])}}">
-                        Name: <input type="text" name="author_name" value="{{$author->name}}">
-                        Surname: <input type="text" name="author_surname" value="{{$author->surname}}">
+                            <div class="form-group">
+                                <label> Name: </label>
+                                <input type="text" class="form-control" name="author_name" value="{{$author->name}}">
+                                <small class="form-text text-muted">The name of the updated author.</small>
+                            </div>
+                            <div class="form-group">
+                                <label> Surname: </label>
+                                <input type="text" class="form-control" name="author_surname" value="{{$author->surname}}">
+                                <small class="form-text text-muted">The surname of the updated author.</small>
+                            </div>
                             @csrf
-                            <button type="submit">EDIT</button>
+                            <button type="submit" class="btn btn-primary">EDIT</button>
                         </form>
                     </div>
                 </div>
