@@ -41,7 +41,7 @@ class AuthorController extends Controller
     public function store(Request $request)
     {
         Author::create($request); // static function that creates the object
-        return redirect()-> route('author.index');
+        return redirect()-> route('author.index')->with('success_message', 'The author has been successfully added to the database.');
     }
 
     /**
@@ -79,7 +79,7 @@ class AuthorController extends Controller
         $author->name = $request->author_name;
         $author->surname = $request->author_surname;
         $author->save();
-        return redirect()->route('author.index');
+        return redirect()->route('author.index')->with('success_message', 'The author has been successfully updated.');
     }
 
     /**
@@ -92,9 +92,9 @@ class AuthorController extends Controller
     {
         // Author::destroy($author);
         if($author->authorBooksList->count() !== 0) {
-            return 'Unable to delete, as this author has books assigned.';
+            return redirect()->route('author.index')->with('info_message', 'Unable to delete, as this author has books assigned.');
         }
         $author->delete();
-        return redirect()->route('author.index');
+        return redirect()->route('author.index')->with('success_message', 'The author has been successfully deleted.');
     }
 }

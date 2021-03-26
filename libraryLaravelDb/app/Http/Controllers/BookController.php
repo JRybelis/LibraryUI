@@ -44,7 +44,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         Book::create($request);
-        return redirect()->route('book.index');
+        return redirect()->route('book.index')->with('success_message', 'The book record has been added to the library database.');
     }
 
     /**
@@ -85,7 +85,7 @@ class BookController extends Controller
         $book->about = $request->book_about;
         $book->author_id = $request->author_id;
         $book->save();
-        return redirect()->route('book.index');
+        return redirect()->route('book.index')->with('success_message', 'The book record has been updated in the library database.');
     }
 
     /**
@@ -97,6 +97,6 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         $book->delete();
-        return redirect()->route('book.index');
+        return redirect()->route('book.index')->with('success_message', 'The book record has been removed from the library database.');
     }
 }
