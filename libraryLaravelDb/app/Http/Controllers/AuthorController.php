@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use Illuminate\Http\Request;
+use Validator;
 
 
 class AuthorController extends Controller
@@ -41,6 +42,30 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator = Validator::make
+        (
+            $request->all(),
+            [
+                'author_name' => ['required', 'min:2', 'max:64'],
+                'author_surname' => ['required', 'min:2', 'max:64'],
+            ],
+            //custom error messages:
+            // [
+            //     'author_name.required' => 'Name field cannot be left blank.',
+            //     'author_name.min' => 'Name must be at least 2 characters long.'
+            // ],
+            // [
+            //     'author_surname.required' => 'Surname field cannot be left blank.',
+            //     'author_surname.min' => 'Surname must be at least 2 characters long.'
+            // ]
+        );
+
+        if ($validator->fails()){
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
+
         // static function that creates the object. logic moved out
         // Author::create($request); 
         
@@ -80,6 +105,21 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
+        $validator = Validator::make
+        (
+            $request->all(),
+            [
+                'author_name' => ['required', 'min:2', 'max:64'],
+                'author_surname' => ['required', 'min:2', 'max:64'],
+            ]
+       
+        );
+
+        if ($validator->fails()){
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
+
         //simplest:
         // $author->name = $request->author_name;
         // $author->surname = $request->author_surname;

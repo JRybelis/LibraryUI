@@ -10,13 +10,13 @@
                         <form method="POST" action="{{route('book.update', [$book])}}">
                             <div class="form-group">
                                 <label>Title:</label>
-                                <input class="form-control" type="text" name="book_title" value="{{$book->title}}">
+                                <input class="form-control" type="text" name="book_title" value="{{old('book_title', $book->title)}}">
                                 <label>ISBN: </label>
-                                <input class="form-control" type="text" name="book_isbn" value="{{$book->isbn}}">
+                                <input class="form-control" type="text" name="book_isbn" value="{{old('book_isbn', $book->isbn)}}">
                                 <label>Pages: </label>
-                                <input class="form-control" type="text" name="book_pages" value="{{$book->pages}}">
+                                <input class="form-control" type="text" name="book_pages" value="{{old('book_pages', $book->pages)}}">
                                 </label>About: </label>
-                                <textarea id="summernote" class="form-control" name="book_about">{{$book->about}}</textarea>
+                                <textarea id="summernote" class="form-control" name="book_about" value="{{old('book_about', $book->about)}}">{{$book->about}}</textarea>
                                 <small class="text-muted">Please select author's name: </small>
                                 <select name="author_id">
                                     @foreach($authors as $author)

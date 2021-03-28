@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Author;
 use Illuminate\Http\Request;
+use Validator;
 
 
 class BookController extends Controller
@@ -43,6 +44,23 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $validator = Validator::make
+        (
+            $request->all(),
+            [
+                'book_title' => ['required', 'max:255'],
+                'book_isbn' => ['required', 'max:20'],
+                'book_pages' => ['required'],
+                'book_about' => ['required']
+            ]
+        );
+
+        if ($validator->fails()){
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
+
         // static function that creates the object. logic moved out
         // Book::create($request);
 
@@ -83,6 +101,21 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        $validator = Validator::make
+        (
+            $request->all(),
+            [
+                'book_title' => ['required', 'max:255'],
+                'book_isbn' => ['required', 'max:20'],
+                'book_pages' => ['required'],
+                'book_about' => ['required']
+            ]
+        );
+
+        if ($validator->fails()){
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
         //simplest:
         // $book->title = $request->book_title;
         // $book->isbn = $request->book_isbn;
