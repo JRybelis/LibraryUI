@@ -43,7 +43,11 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        Book::create($request);
+        // static function that creates the object. logic moved out
+        // Book::create($request);
+
+        //IRL alternative to the store method logic above
+        Book::new()->refreshAndSaveBook($request);
         return redirect()->route('book.index')->with('success_message', 'The book record has been added to the library database.');
     }
 
@@ -79,12 +83,16 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        $book->title = $request->book_title;
-        $book->isbn = $request->book_isbn;
-        $book->pages = $request->book_pages;
-        $book->about = $request->book_about;
-        $book->author_id = $request->author_id;
-        $book->save();
+        //simplest:
+        // $book->title = $request->book_title;
+        // $book->isbn = $request->book_isbn;
+        // $book->pages = $request->book_pages;
+        // $book->about = $request->book_about;
+        // $book->author_id = $request->author_id;
+        // $book->save();
+
+        //IRL alternative to the update method logic in controller:
+        $book->refreshAndSaveBook($request);
         return redirect()->route('book.index')->with('success_message', 'The book record has been updated in the library database.');
     }
 
@@ -96,7 +104,11 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        $book->delete();
+        //simplest:
+        // $book->delete();
+        
+        //IRL alternative to the destroy method logic in controller:
+        $book->remove($book);
         return redirect()->route('book.index')->with('success_message', 'The book record has been removed from the library database.');
     }
 }

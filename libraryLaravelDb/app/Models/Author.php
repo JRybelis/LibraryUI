@@ -10,31 +10,49 @@ class Author extends Model
 {
     use HasFactory;
     
-    public static function create(Request $request) //creates 
+    //logic moved out of controller:
+    // public static function create(Request $request) //creates 
+    // {
+    //     $author = new self;
+    //     $author->name = $request->author_name;
+    //     $author->surname = $request->author_surname;
+    //     $author->save();
+    // }
+
+    //simplest:
+    // public function edit(Request $request)
+    // {
+    //     $this->name = $request->author_name;
+    //     $this->surname = $request->author_surname;
+    //     $this->save();
+    // }
+    
+    public function authorBooksList() 
     {
-        $author = new self;
-        $author->name = $request->author_name;
-        $author->surname = $request->author_surname;
-        $author->save();
+        return $this->hasMany('App\Models\Book', 'author_id', 'id');
     }
 
-    public function edit(Request $request)
+
+    //IRL alternative to create & edit methods above
+    public static function new() 
+    {
+        return new self;
+    }
+
+    public function refreshAndSaveAuthor(Request $request)
     {
         $this->name = $request->author_name;
         $this->surname = $request->author_surname;
         $this->save();
+        return $this;
     }
-    
-    // public static function destroy(Author $author)
-    // {
-    //     if($author->authorBooksList->count() !== 0) {
-    //         return 'Unable to delete, as this author has books assigned.';
-    //     }
-    //     $author->delete();
-    // }
 
-    public function authorBooksList() 
+    public function remove(Author $author)
     {
-        return $this->hasMany('App\Models\Book', 'author_id', 'id');
+        if($this->authorBooksList->count() !== 0) {
+            // return 'Unable to delete, as this author has books assigned.';
+            return redirect()->route('author.index')->with('info_message', 'Unable to delete, as this author has books assigned.');
+        }
+        $this->delete();
     }
 }

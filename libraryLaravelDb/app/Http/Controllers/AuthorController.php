@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use Illuminate\Http\Request;
 
+
 class AuthorController extends Controller
 {
     public function __construct()
@@ -40,7 +41,11 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        Author::create($request); // static function that creates the object
+        // static function that creates the object. logic moved out
+        // Author::create($request); 
+        
+        //IRL alternative to the store method logic above
+        Author::new()->refreshAndSaveAuthor($request);
         return redirect()-> route('author.index')->with('success_message', 'The author has been successfully added to the database.');
     }
 
@@ -75,11 +80,16 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        $author->edit($request);
-        
+        //simplest:
         // $author->name = $request->author_name;
         // $author->surname = $request->author_surname;
         // $author->save();
+        
+        //logic moved out:
+        // $author->edit($request);
+
+        //IRL alternative to the update method logic above:
+        $author->refreshAndSaveAuthor($request);
         return redirect()->route('author.index')->with('success_message', 'The author has been successfully updated.');
     }
 
@@ -91,11 +101,14 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        // Author::destroy($author);
-        if($author->authorBooksList->count() !== 0) {
-            return redirect()->route('author.index')->with('info_message', 'Unable to delete, as this author has books assigned.');
-        }
-        $author->delete();
+        //simplest:
+        // if($author->authorBooksList->count() !== 0) {
+        //     return redirect()->route('author.index')->with('info_message', 'Unable to delete, as this author has books assigned.');
+        // }
+        // $author->delete();
+        
+        //logic moved out:
+        $author->remove($author);
         return redirect()->route('author.index')->with('success_message', 'The author has been successfully deleted.');
     }
 }
