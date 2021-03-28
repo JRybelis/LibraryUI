@@ -8,4 +8,16 @@
             margin: 5px;
         }
     }
+    &__books {
+        display: flex;
+        flex-direction: column;
+        &__title {
+            font-weight: bold;
+        }
+        &__author {
+            color: gray;
+            font-size: 80%;
+            font-style: italic;
+        }
+    }
 }

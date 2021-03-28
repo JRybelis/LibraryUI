@@ -10013,3 +10013,15 @@ h3 {
 .list-line__buttons > * {
   margin: 5px;
 }
+.list-line__books {
+  display: flex;
+  flex-direction: column;
+}
+.list-line__books__title {
+  font-weight: bold;
+}
+.list-line__books__author {
+  color: gray;
+  font-size: 80%;
+  font-style: italic;
+}
