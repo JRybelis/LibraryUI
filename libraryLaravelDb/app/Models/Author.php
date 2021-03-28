@@ -18,12 +18,12 @@ class Author extends Model
         $author->save();
     }
 
-    // public static function update(Request $request, Author $author)
-    // {
-    //     $author->name = $request->author_name;
-    //     $author->surname = $request->author_surname;
-    //     $author->save();
-    // }
+    public function edit(Request $request)
+    {
+        $this->name = $request->author_name;
+        $this->surname = $request->author_surname;
+        $this->save();
+    }
     
     // public static function destroy(Author $author)
     // {

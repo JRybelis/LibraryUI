@@ -75,10 +75,11 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        // Author::update($request, $author); // static function that updates the object
-        $author->name = $request->author_name;
-        $author->surname = $request->author_surname;
-        $author->save();
+        $author->edit($request);
+        
+        // $author->name = $request->author_name;
+        // $author->surname = $request->author_surname;
+        // $author->save();
         return redirect()->route('author.index')->with('success_message', 'The author has been successfully updated.');
     }
 
