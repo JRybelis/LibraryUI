@@ -17,7 +17,7 @@
                                 <a href="{{route('author.edit', [$author])}}" class="btn btn-info">EDIT</a>
                                 <form method="POST" action="{{route('author.destroy', [$author])}}">
                                 @csrf
-                                <button type="submit" class="btn btn-danger">DELETE</button>
+                                    <button type="submit" class="btn btn-danger">DELETE</button>
                                 </form>
                             </div>
                         </li>
