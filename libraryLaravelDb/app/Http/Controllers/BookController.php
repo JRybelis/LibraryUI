@@ -28,6 +28,7 @@ class BookController extends Controller
         }
         else {
             $books = Book::all();
+            $authors = Author::all();
         }
         
         return view('book.index', ['books' => $books]);

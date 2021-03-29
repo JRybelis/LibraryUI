@@ -7,9 +7,21 @@
             <div class="card">
                 <div class="card-header">
                     <h3>Book list</h3>
-                    <a href="{{route('book.index',['sort' => 'book_title'])}}">Sort books by title</a>
-                    <a href="{{route('book.index',['sort' => 'book_pages'])}}">Sort books by length</a>
-                    <a href="{{route('book.index')}}">Default order</a>
+
+                    <form action="{{route('book.index')}}" method="get">
+                        <div class="form-group">
+                            <label>Author: </label>
+                            <select name="author_id">
+                                @foreach($authors as $author)
+                                    <option value="{{$author->id}}" @if($author->id == $book->author_id) selected @endif> {{$author->name}} {{$author->surname}} </option>
+                                @endforeach
+                            </select>
+                        @csrf
+                    </form>
+
+                    <a class="btn btn-info" href="{{route('book.index',['sort' => 'book_title'])}}">Sort books by title</a>
+                    <a class="btn btn-info" href="{{route('book.index',['sort' => 'book_pages'])}}">Sort books by length</a>
+                    <a class="btn btn-info" href="{{route('book.index')}}">Default order</a>
                 </div>
                 <div class="card-body">
                 <ul class="list-group">
