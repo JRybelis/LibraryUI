@@ -19,9 +19,17 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::all();
+        if ('book_title' == $request->sort) {
+            $books = Book::orderBy('title')->get();
+        } elseif ('book_pages' == $request->sort) {
+            $books = Book::orderBy('pages')->get();
+        }
+        else {
+            $books = Book::all();
+        }
+        
         return view('book.index', ['books' => $books]);
     }
 
@@ -77,7 +85,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return view('book.show', ['book' => $book]);
     }
 
     /**

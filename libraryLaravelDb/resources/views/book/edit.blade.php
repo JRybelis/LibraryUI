@@ -16,7 +16,7 @@
                                 <label>Pages: </label>
                                 <input class="form-control" type="text" name="book_pages" value="{{old('book_pages', $book->pages)}}">
                                 </label>About: </label>
-                                <textarea id="summernote" class="form-control" name="book_about" value="{{old('book_about', $book->about)}}">{{$book->about}}</textarea>
+                                <textarea id="summernote" class="form-control" name="book_about">{{old('book_about', $book->about)}}</textarea>
                                 <small class="text-muted">Please select author's name: </small>
                                 <select name="author_id">
                                     @foreach($authors as $author)
