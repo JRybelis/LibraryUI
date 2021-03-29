@@ -21,17 +21,21 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        if ('book_title' == $request->sort) {
-            $books = Book::orderBy('title')->get();
-        } elseif ('book_pages' == $request->sort) {
-            $books = Book::orderBy('pages')->get();
+        $authors = Author::all();
+        if ($request->author_id) {
+           $books = Book::where('author_id', $request->author_id)->get();
         }
+
+        // if ('book_title' == $request->sort) {
+        //     $books = Book::orderBy('title')->get();
+        // } elseif ('book_pages' == $request->sort) {
+        //     $books = Book::orderBy('pages')->get();
+        // }
         else {
             $books = Book::all();
-            $authors = Author::all();
         }
         
-        return view('book.index', ['books' => $books]);
+        return view('book.index', ['books' => $books, 'authors' =>$authors]);
     }
 
     /**
