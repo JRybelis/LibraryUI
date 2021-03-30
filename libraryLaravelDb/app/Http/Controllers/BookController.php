@@ -22,20 +22,37 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $authors = Author::all();
+        // $books = Book::all();
+        
+        //filtering
         if ($request->author_id) {
            $books = Book::where('author_id', $request->author_id)->get();
+           $filterBy = $request->author_id;
+        } else {
+            $books = Book::all();
         }
-
+        
+        //sorting
+        if ($request->sort && 'ascending' == $request->sort) {
+            $books = $books->sortBy('title');
+            $sortBy = 'ascending';
+        }
+        elseif ($request->sort && 'descending' == $request->sort) {
+            $books = $books->sortByDesc('title');
+            $sortBy = 'descending';
+        }
         // if ('book_title' == $request->sort) {
         //     $books = Book::orderBy('title')->get();
         // } elseif ('book_pages' == $request->sort) {
         //     $books = Book::orderBy('pages')->get();
         // }
-        else {
-            $books = Book::all();
-        }
         
-        return view('book.index', ['books' => $books, 'authors' =>$authors]);
+        return view('book.index', [
+            'books' => $books, 
+            'authors' => $authors,
+            'filterBy' => $filterBy ?? 0, 
+            'sortBy' => $sortBy ?? '' 
+            ]);
     }
 
     /**

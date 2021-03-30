@@ -26,8 +26,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    select {
+    &.column {
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
         margin: 0 12px;
+    }
+    select, label, input {
+        margin: 0 6px;
     }
     &.form-group {
         margin-bottom: 0;

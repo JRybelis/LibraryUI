@@ -10031,8 +10031,14 @@ h3 {
   justify-content: space-between;
   align-items: center;
 }
-.make-inline select {
+.make-inline.column {
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
   margin: 0 12px;
+}
+.make-inline select, .make-inline label, .make-inline input {
+  margin: 0 6px;
 }
 .make-inline.form-group {
   margin-bottom: 0;

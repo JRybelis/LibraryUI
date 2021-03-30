@@ -3,25 +3,33 @@
 @section('content')
 <div class='container'>
     <div class="row justivy-content-center">
-        <div class="col-md-8">
+        <div class="col-md-11">
             <div class="card">
                 <div class="card-header">
                     <h3>Book list</h3>
                     <div class="make-inline">
                         <form action="{{route('book.index')}}" method="get" class="make-inline">
-                            <div class="form-group">
+                            <div class="form-group make-inline">
                                 <label>Author: </label>
                                 <select class="form-control" name="author_id">
+                                    <option value="0" disabled @if($filterBy == 0) selected @endif>Select Author</option>
                                     @foreach($authors as $author)
-                                        <option value="{{$author->id}}" 
-                                        {{-- @if($author->id == $book->author_id) selected @endif --}}
-                                        > 
+                                        <option value="{{$author->id}}" @if($filterBy == $author->id) selected @endif>
                                             {{$author->name}} {{$author->surname}} 
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
                             @csrf
+                            <label class="form-check-label" >Sort by title</label>
+                            <label class="form-check-label" for="sortAscending">Ascending</label>
+                            <div class="form-group make-inline column">
+                                <input type="radio" class="form-check-input" id="sortAscending" name="sort" value="ascending" @if($sortBy == 'ascending') checked @endif>
+                            </div>
+                            <label class="form-check-label" for="sortAscending">Descending</label>
+                            <div class="form-group make-inline column">
+                                <input type="radio" class="form-check-input" id="sortDescending" name="sort" value="descending" @if($sortBy == 'descending') checked @endif>
+                            </div>
                             <button type="submit" class="btn btn-info">FILTER</button>
                         </form>
                         <a class="btn btn-info" href="{{route('book.index')}}">Clear filter</a>
