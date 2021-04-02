@@ -10020,9 +10020,9 @@ h3 {
 .list-line__books__title {
   font-weight: bold;
 }
-.list-line__books__author {
+.list-line__books__publisher {
   color: gray;
-  font-size: 80%;
+  font-size: 90%;
   font-style: italic;
 }
 
