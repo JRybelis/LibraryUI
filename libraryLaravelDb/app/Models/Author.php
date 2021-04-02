@@ -50,7 +50,6 @@ class Author extends Model
     public function remove(Author $author)
     {
         if($this->authorBooksList->count() !== 0) {
-            // return 'Unable to delete, as this author has books assigned.';
             return redirect()->route('author.index')->with('info_message', 'Unable to delete, as this author has books assigned.');
         }
         $this->delete();

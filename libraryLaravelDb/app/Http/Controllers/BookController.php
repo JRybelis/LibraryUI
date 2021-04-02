@@ -153,6 +153,7 @@ class BookController extends Controller
         // $book->pages = $request->book_pages;
         // $book->about = $request->book_about;
         // $book->author_id = $request->author_id;
+        // $book->publisher_id = $request->publisher_id;
         // $book->save();
 
         //IRL alternative to the update method logic in controller:
