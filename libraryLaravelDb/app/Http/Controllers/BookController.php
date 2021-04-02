@@ -22,7 +22,6 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $authors = Author::all();
-        // $books = Book::all();
         
         //filtering
         if ($request->author_id) {

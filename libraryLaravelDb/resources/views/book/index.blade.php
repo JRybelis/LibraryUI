@@ -10,9 +10,9 @@
                     <div class="make-inline">
                         <form action="{{route('book.index')}}" method="get" class="make-inline">
                             <div class="form-group make-inline">
-                                <label>Author: </label>
+                                <label>Select: </label>
                                 <select class="form-control" name="author_id">
-                                    <option value="0" disabled @if($filterBy == 0) selected @endif>Select Author</option>
+                                    <option value="0" disabled @if($filterBy == 0) selected @endif>Author</option>
                                     @foreach($authors as $author)
                                         <option value="{{$author->id}}" @if($filterBy == $author->id) selected @endif>
                                             {{$author->name}} {{$author->surname}} 
@@ -21,7 +21,15 @@
                                 </select>
                             </div>
                             @csrf
-                            <label class="form-check-label" >Sort by title</label>
+                            <div class="form-group make-inline">
+                                <label>Choose: </label>
+                                <select class="form-control" name="sort_type">
+                                    <option value="0" disabled @if($sortBy == '') selected @endif>Book sorting type</option>
+                                    <option value="title" name="title">Title</option>
+                                    <option value="length" name="length">Amount of pages</option>
+                                </select>
+                            </div>
+                            <label class="form-check-label" >Sorting order:</label>
                             <label class="form-check-label" for="sortAscending">Ascending</label>
                             <div class="form-group make-inline column">
                                 <input type="radio" class="form-check-input" id="sortAscending" name="sort" value="ascending" @if($sortBy == 'ascending') checked @endif>
@@ -33,8 +41,8 @@
                             <button type="submit" class="btn btn-info">FILTER</button>
                         </form>
                         <a class="btn btn-info" href="{{route('book.index')}}">Clear filter</a>
-                        <a class="btn btn-info" href="{{route('book.index',['sort' => 'book_title'])}}">Sort books by title</a>
-                        <a class="btn btn-info" href="{{route('book.index',['sort' => 'book_pages'])}}">Sort books by length</a>
+                        {{-- <a class="btn btn-info" href="{{route('book.index',['sort' => 'book_title'])}}">Sort books by title</a> --}}
+                        {{-- <a class="btn btn-info" href="{{route('book.index',['sort' => 'book_pages'])}}">Sort books by length</a> --}}
                         
                     </div>
                 <div class="card-body">
