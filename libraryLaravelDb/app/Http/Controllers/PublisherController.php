@@ -120,8 +120,12 @@ class PublisherController extends Controller
      */
     public function destroy(Publisher $publisher)
     {
-        $publisher->remove($publisher);
-        return redirect()->route('publisher.index')->with('success_message', 'The publisher has been successfully deleted.');
+        
+        if (($publisher->remove($publisher)) == false) {
+            return redirect()->route('publisher.index')->with('info_message', 'Unable to delete, as this publisher has books assigned.');
+        } else {
+            return redirect()->route('publisher.index')->with   ('success_message', 'The publisher has been successfully deleted.');
+        }
     }
 }
 

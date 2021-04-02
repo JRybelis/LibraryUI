@@ -29,8 +29,9 @@ class Publisher extends Model
     public function remove(Publisher $publisher)
     {
         if($this->publisherBooksList->count() !== 0) {
-            return redirect()->route('publisher.index')->with('info_message', 'Unable to delete, as this publisher has books assigned.');
-        }
+            return false;
+        } 
         $this->delete();
+        return true;
     }
 }

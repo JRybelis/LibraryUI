@@ -18,6 +18,11 @@
                                 </label>About: </label>
                                 <textarea id="summernote" class="form-control" name="book_about">{{old('book_about', $book->about)}}</textarea>
                                 <small class="text-muted">Please select author's name: </small>
+                                <select name="publisher_id">
+                                    @foreach($publishers as $publisher)
+                                        <option value="{{$publisher->id}}" @if($publisher->id == $book->publisher_id) selected @endif> {{$publisher->title}}</option>
+                                    @endforeach
+                                </select>
                                 <select name="author_id">
                                     @foreach($authors as $author)
                                         <option value="{{$author->id}}" @if($author->id == $book->author_id) selected @endif> {{$author->name}} {{$author->surname}} </option>

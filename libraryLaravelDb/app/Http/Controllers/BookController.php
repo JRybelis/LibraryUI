@@ -120,7 +120,8 @@ class BookController extends Controller
     public function edit(Book $book)
     {
         $authors = Author::all();
-        return view ('book.edit', ['book' => $book, 'authors' => $authors]);
+        $publishers = Publisher::all();
+        return view ('book.edit', ['book' => $book, 'authors' => $authors, 'publishers' => $publishers]);
     }
 
     /**

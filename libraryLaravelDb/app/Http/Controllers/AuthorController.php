@@ -155,7 +155,10 @@ class AuthorController extends Controller
         // $author->delete();
         
         //logic moved out:
-        $author->remove($author);
-        return redirect()->route('author.index')->with('success_message', 'The author has been successfully deleted.');
+        if (($author->remove($author)) == false) {
+            return redirect()->route('author.index')->with('info_message', 'Unable to delete, as this author has books assigned.');
+        } else {
+            return redirect()->route('author.index')->with('success_message', 'The author has been successfully deleted.');
+        }
     }
 }
