@@ -99,7 +99,7 @@ class PublisherController extends Controller
         (
             $request->all(),
             [
-                'publisher_name' => ['required', 'min:2', 'max:64']
+                'publisher_title' => ['required', 'min:2', 'max:64']
             ]
         );
 

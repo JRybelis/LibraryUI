@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Author;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -62,7 +63,8 @@ class BookController extends Controller
     public function create()
     {
         $authors = Author::all();
-        return view('book.create', ['authors' => $authors]);
+        $publishers = Publisher::all();
+        return view('book.create', ['authors' => $authors, 'publishers' => $publishers]);
     }
 
     /**

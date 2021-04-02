@@ -17,6 +17,12 @@
                                 <input type="text" name="book_pages" class="form-control"value="{{old('book_pages')}}">
                                 <label>About: </label>
                                 <textarea id="summernote" name="book_about" class="form-control" value="{{old('book_about')}}"></textarea>
+                                <small class="text-muted">Please select publisher: </small>
+                                <select name="author_id">
+                                    @foreach($publishers as $publisher)
+                                        <option value="{{$publisher->id}}">{{$publisher->title}}</option>            
+                                    @endforeach
+                                </select>
                                 <small class="text-muted">Please select author's name: </small>
                                 <select name="author_id">
                                     @foreach($authors as $author)

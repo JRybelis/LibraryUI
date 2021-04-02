@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Author;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
 
 class Book extends Model
@@ -27,6 +28,11 @@ class Book extends Model
     {
         return $this->belongsTo(Author::class, 'author_id', 'id');
     }
+    
+    public function bookPublisher()
+    {
+        return $this->belongsTo(Publisher::class, 'publisher_id', 'id');
+    }
 
     //IRL alternative to create & edit methods
     public static function new()
@@ -40,6 +46,7 @@ class Book extends Model
         $this->pages = $request->book_pages;
         $this->about = $request->book_about;
         $this->author_id = $request->author_id;
+        $this->publisher_id = $request->publisher_id;
         $this->save();
         return $this;
     }

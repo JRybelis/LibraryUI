@@ -57,6 +57,10 @@
                                 <div class="list-line__books__author">
                                     {{$book->bookAuthor->name}} {{$book->bookAuthor->surname}}
                                 </div>
+                                . Published at 
+                                <div class="list-line__books__author">
+                                    {{$book->bookPublisher->title}}
+                                </div>
                             </div>
                             <div class="list-line__buttons">
                                 <a href="{{route('book.show', [$book])}}" class="btn btn-info">PREVIEW</a>
