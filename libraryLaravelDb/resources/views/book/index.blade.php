@@ -24,9 +24,9 @@
                             <div class="form-group make-inline">
                                 <label>Choose: </label>
                                 <select class="form-control" name="sort_type">
-                                    <option value="0" disabled @if($sortBy == '') selected @endif>Book sorting type</option>
-                                    <option value="title" name="title">Title</option>
-                                    <option value="length" name="length">Amount of pages</option>
+                                    <option value="0" disabled @if($sortType == '') selected @endif>Book sorting type</option>
+                                    <option value="title" name="title" @if($sortType == 'title') selected @endif>Title</option>
+                                    <option value="length" name="length" @if($sortType == 'length') selected @endif>Amount of pages</option>
                                 </select>
                             </div>
                             <label class="form-check-label" >Sorting order:</label>

@@ -23,7 +23,7 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $authors = Author::all();
-        
+        _dc($_GET);
         //filtering
         if ($request->author_id) {
            $books = Book::where('author_id', $request->author_id)->get();
@@ -33,25 +33,34 @@ class BookController extends Controller
         }
         
         //sorting
-        if ($request->sort && 'ascending' == $request->sort) {
-            $books = $books->sortBy('title');
+        
+        if ($request->sort_type && 'length' && $request->sort && 'ascending' == $request->sort) {
+            $books = $books->sortBy('pages');
             $sortBy = 'ascending';
+            $sortType = 'length';
         }
-        elseif ($request->sort && 'descending' == $request->sort) {
+        elseif ($request->sort_type && 'length' && $request->sort && 'descending' == $request->sort) {
+            $books = $books->sortByDesc('pages');
+            $sortBy = 'ascending';
+            $sortType = 'length';
+        }
+        elseif ($request->sort_type && 'title' && $request->sort && 'ascending' == $request->sort) {
+            $books = $books->sortBy('book_title');
+            $sortBy = 'ascending';
+            $sortType = 'title';
+        }
+        elseif ($request->sort_type && 'title' && $request->sort && 'descending' == $request->sort) {
             $books = $books->sortByDesc('title');
             $sortBy = 'descending';
+            $sortType = 'title';
         }
-        // if ('book_title' == $request->sort) {
-        //     $books = Book::orderBy('title')->get();
-        // } elseif ('book_pages' == $request->sort) {
-        //     $books = Book::orderBy('pages')->get();
-        // }
         
         return view('book.index', [
             'books' => $books, 
             'authors' => $authors,
             'filterBy' => $filterBy ?? 0, 
-            'sortBy' => $sortBy ?? '' 
+            'sortBy' => $sortBy ?? '',
+            'sortType' => $sortType ?? ''
             ]);
     }
 
