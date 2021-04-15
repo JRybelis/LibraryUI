@@ -45,12 +45,12 @@ class BookController extends Controller
             $sortType = 'length';
         }
         elseif ($request->sort_type && 'title' && $request->sort && 'ascending' == $request->sort) {
-            $books = $books->sortBy('book_title');
+            $books = $books->sortBy('book.title');
             $sortBy = 'ascending';
             $sortType = 'title';
         }
         elseif ($request->sort_type && 'title' && $request->sort && 'descending' == $request->sort) {
-            $books = $books->sortByDesc('title');
+            $books = $books->sortByDesc('book.title');
             $sortBy = 'descending';
             $sortType = 'title';
         }

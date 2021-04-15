@@ -41,9 +41,6 @@
                             <button type="submit" class="btn btn-info">FILTER</button>
                         </form>
                         <a class="btn btn-info" href="{{route('book.index')}}">Clear filter</a>
-                        {{-- <a class="btn btn-info" href="{{route('book.index',['sort' => 'book_title'])}}">Sort books by title</a> --}}
-                        {{-- <a class="btn btn-info" href="{{route('book.index',['sort' => 'book_pages'])}}">Sort books by length</a> --}}
-                        
                     </div>
                 <div class="card-body">
                 <ul class="list-group">
