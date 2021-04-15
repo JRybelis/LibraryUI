@@ -16,6 +16,7 @@
                     @foreach($authors as $author)
                         <li class="list-group-item list-line">
                             <div> 
+                                <img src="{{$author->portrait}}">
                                 {{$author->name}} {{$author->surname}} 
                             </div>
                             <div class="list-line__buttons">

@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             DB::table('authors')-> insert([
                 'name' => $faker->firstName(),
                 'surname' => $faker->lastName(),
+                'portrait' => $faker->imageUrl(180, 340),
             ]);
         }
         foreach (range(1, $publishers) as $_) {
