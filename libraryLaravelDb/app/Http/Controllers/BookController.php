@@ -7,6 +7,7 @@ use App\Models\Author;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
 use Validator;
+use PDF;
 
 
 class BookController extends Controller
@@ -185,5 +186,11 @@ class BookController extends Controller
         //IRL alternative to the destroy method logic in controller:
         $book->remove($book);
         return redirect()->route('book.index')->with('success_message', 'The book record has been removed from the library database.');
+    }
+    
+    public function makePdf(Book $book)
+    {
+        $pdf = PDF::loadView('book.pdf', ['book' => $book]);
+        return $pdf->download('book-title'.$book->title.'.pdf');
     }
 }

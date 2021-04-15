@@ -38,9 +38,9 @@
                             <div class="form-group make-inline column">
                                 <input type="radio" class="form-check-input" id="sortDescending" name="sort" value="descending" @if($sortBy == 'descending') checked @endif>
                             </div>
-                            <button type="submit" class="btn btn-info">FILTER</button>
+                            <button type="submit" class="btn btn-secondary">FILTER</button>
                         </form>
-                        <a class="btn btn-info" href="{{route('book.index')}}">Clear filter</a>
+                        <a class="btn btn-secondary" href="{{route('book.index')}}">Clear filter</a>
                     </div>
                 <div class="card-body">
                 <ul class="list-group">
@@ -58,7 +58,8 @@
                                 </div>
                             </div>
                             <div class="list-line__buttons">
-                                <a href="{{route('book.show', [$book])}}" class="btn btn-info">PREVIEW</a>
+                                <a href="{{route('book.show', [$book])}}" class="btn btn-warning">PREVIEW</a>
+                                <a href="{{route('book.makePdf', [$book])}}" class="btn btn-warning">DOWNLOAD PDF</a>
                                 <a href="{{route('book.edit', [$book])}}" class="btn btn-info">EDIT</a>
                                 <form method="POST" action="{{route('book.destroy', [$book])}}">
                                 @csrf

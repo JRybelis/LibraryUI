@@ -42,6 +42,7 @@ Route::group(['prefix' => 'books'], function(){
     Route::post('update/{book}', [BookController::class, 'update'])->name('book.update');
     Route::post('delete/{book}', [BookController::class, 'destroy'])->name('book.destroy');
     Route::get('show/{book}', [BookController::class, 'show'])->name('book.show');
+    Route::get('makePdf/{book}', [BookController::class, 'makePdf'])->name('book.makePdf');
 });
 
 Route::group(['prefix' => 'publishers'], function(){
